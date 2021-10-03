@@ -10,11 +10,11 @@ ACTIVE, INACTIVE = 0, 1
 @block
 def register(load_in, load_out, enable, clock, reset):
     @always_seq(clock.posedge, reset=reset)
-    def shifter():
+    def Reg_1():
         if enable:
             load_out.next = load_in
 
-    return shifter
+    return Reg_1
 
 
 load_in = Signal(modbv(0)[32:0])
