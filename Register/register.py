@@ -16,17 +16,14 @@ def register(load_in, load_out, enable, clock, reset):
 
     return Reg_1
 
-
-load_in = Signal(modbv(0)[32:0])
-load_out = Signal(modbv(0)[32:0])
-amount = Signal(intbv(0)[3:0])
-clock = Signal(bool(0))
-enable = Signal(bool(0))
-reset = ResetSignal(0, active=0, isasync=True)
-
-
 @block
 def testbench():
+    load_in = Signal(modbv(0)[32:0])
+    load_out = Signal(modbv(0)[32:0])
+    amount = Signal(intbv(0)[3:0])
+    clock = Signal(bool(0))
+    enable = Signal(bool(0))
+    reset = ResetSignal(0, active=0, isasync=True)
     ins = register(load_in, load_out, enable, clock, reset)
 
     @always(delay(10))
@@ -58,6 +55,12 @@ def testbench():
 
 
 def convert():
+    load_in = Signal(modbv(0)[32:0])
+    load_out = Signal(modbv(0)[32:0])
+    amount = Signal(intbv(0)[3:0])
+    clock = Signal(bool(0))
+    enable = Signal(bool(0))
+    reset = ResetSignal(0, active=0, isasync=True)
     a = register(load_in, load_out, enable, clock, reset)
     a.convert(hdl='Verilog')
 
