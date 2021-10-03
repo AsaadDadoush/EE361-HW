@@ -26,7 +26,9 @@ def mux_3to1(i0, i1, i2, sel, out):
             out.next = i0
         elif sel == 1:
             out.next = i1
-        else:
+        elif sel == 2:
+            out.next = i2
+        elif sel == 3:
             out.next = i2
 
     return mux3to1
