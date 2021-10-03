@@ -45,6 +45,13 @@ def testbench():
 
     return instances()
 
+def convert():
+    i0, i1, i2, i3, d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, \
+    d12, d13, d14, d15 = [Signal(intbv(0)[1:]) for i in range(20)]
+    dec = decoder(i0, i1, i2, i3, d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15)
+    dec.convert(hdl='Verilog')
 
+
+convert()
 tb = testbench()
 tb.run_sim()

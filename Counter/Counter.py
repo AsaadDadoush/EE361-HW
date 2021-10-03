@@ -1,7 +1,7 @@
 from myhdl import block, always, instance, Signal, \
-    ResetSignal, modbv, delay, StopSimulation, bin, always_seq, traceSignals, Simulation
+    ResetSignal, modbv, delay, StopSimulation, bin, always_seq
 
-ACTIVE_LOW, INACTIVE_HIGH = 0, 1
+LOW, HIGH = 0, 1
 
 
 @block
@@ -26,7 +26,6 @@ def Test():
     enable = Signal(bool(0))
     clk = Signal(bool(0))
     reset = ResetSignal(0, active=0, isasync=True)
-    counter_test = Counter(count, enable, clk, reset)
     inc_1 = Counter(count, enable, clk, reset)
     HALF_PERIOD = delay(10)
 
@@ -38,7 +37,7 @@ def Test():
     def stimulus():
         for i in range(3):
             yield clk.negedge
-        reset.next = INACTIVE_HIGH
+        reset.next = HIGH
         for i in range(4096):
             enable.next = 1
             yield clk.negedge
@@ -49,7 +48,7 @@ def Test():
     @instance
     def monitor():
 
-        print("enable   count")
+        print("enable       count")
         yield reset.posedge
         while 1:
             yield clk.posedge
